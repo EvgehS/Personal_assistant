@@ -45,6 +45,7 @@ def listen() -> str:
 engine = pyttsx3.init()
 # Установка настроек
 engine.setProperty('voice', 'ru')
+engine.setProperty('rate', 200)
 
 # Функция озвучивания слов
 
@@ -80,7 +81,7 @@ commands = {'открой ютуб': open_youtube,
 # Бесконечный цикл, ожидающий команд
 while True:
     text = listen()
-    print(text)
+    say(text)
     if 'джарвис' in text:
         if 'стоп' in text:
             break
