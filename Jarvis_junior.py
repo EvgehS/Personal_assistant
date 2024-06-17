@@ -1,5 +1,5 @@
 from sound_functions import listen, say
-from Jarvis_functions import open_discord, open_tg, open_youtube
+from jarvis_functions import open_discord, open_tg, open_youtube
 
 
 # Список команд
