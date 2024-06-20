@@ -15,7 +15,7 @@ def open_discord(backgropn):
 
 
 def open_youtube(backgropn):
-    chrome_path = "C:\\Program Files (x86)\\Google\\Chrome\\Application\\chrome.exe"
+    chrome_path = "C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe"
     # Открываем приложение в фоновом режиме
     subprocess.Popen([chrome_path, 'https://www.youtube.com/'],
                      stdout=[None, subprocess.DEVNULL][backgropn])

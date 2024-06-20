@@ -20,6 +20,4 @@ while True:
         for command, function in commands.items():
             if command in text:
                 say('Выполняю')
-                print(backgropn)
                 function(backgropn)
-
