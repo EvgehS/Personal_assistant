@@ -1,6 +1,7 @@
 import os
 import webbrowser
 from sound_functions import say
+import sys
 
 # Функции джарвиса
 
@@ -20,3 +21,8 @@ def open_tg():
     os.startfile(
         r'C:\Users\sidze\AppData\Roaming\Telegram Desktop\Telegram.exe')
     say('Телеграм запущен')
+
+
+def terminate_program():
+    say('До свидания')
+    sys.exit()
