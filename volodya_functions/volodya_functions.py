@@ -2,6 +2,7 @@ import os
 import webbrowser
 from sound_functions import say
 import sys
+import keyboard
 
 # Функции джарвиса
 
@@ -26,3 +27,8 @@ def open_tg():
 def terminate_program():
     say('До свидания')
     sys.exit()
+
+
+def game_accept():
+    keyboard.press_and_release('enter')
+    say('Приятной игры!')
