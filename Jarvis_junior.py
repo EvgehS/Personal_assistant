@@ -1,11 +1,12 @@
 from sound_functions import listen, say
-from jarvis_functions import open_discord, open_tg, open_youtube
+import jarvis_functions as jf
 
 
 # Список команд
-commands = {'открой ютуб': open_youtube,
-            'открой дис': open_discord,
-            'открой телеграмм': open_tg}
+commands = {'открой ютуб': jf.open_youtube,
+            'открой диск': jf.open_discord,
+            'открой телеграмм': jf.open_tg,
+            'стоп': jf.terminate_program}
 
 names = ['володя', 'вован', 'вовчик', 'вова']
 
@@ -14,9 +15,6 @@ while True:
     text = listen()
     print(text)
     if any(name in text for name in names):
-        if 'стоп' in text:
-            say('До свидания')
-            break
         for command, function in commands.items():
             if command in text:
                 say('Выполняю')
