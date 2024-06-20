@@ -4,15 +4,16 @@ from jarvis_functions import open_discord, open_tg, open_youtube
 
 # Список команд
 commands = {'открой ютуб': open_youtube,
-            'открой диск': open_discord,
+            'открой дис': open_discord,
             'открой телеграмм': open_tg}
 
+names = ['володя', 'вован', 'вовчик', 'вова']
 
 # Бесконечный цикл, ожидающий команд
 while True:
     text = listen()
     print(text)
-    if 'джарвис' in text:
+    if any(name in text for name in names):
         if 'стоп' in text:
             say('До свидания')
             break
