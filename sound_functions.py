@@ -26,6 +26,9 @@ def q_callback(indata, frames, time, status):
 
 def listen() -> str:
     try:
+        # пизданул
+        # переработал
+        # пизданул
         with sd.RawInputStream(samplerate=samplerate, blocksize=1000,
                                device=device, dtype='int16', channels=1,
                                callback=q_callback):
@@ -44,7 +47,7 @@ def listen() -> str:
 engine = pyttsx3.init()
 # Установка настроек
 engine.setProperty('voice', 'ru')
-engine.setProperty('rate', 150)
+engine.setProperty('rate', 200)
 
 # Функция озвучивания слов
 
