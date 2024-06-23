@@ -1,3 +1,4 @@
+from Config.config import paths
 import os
 from sound_functions import say
 import sys
@@ -5,42 +6,48 @@ import keyboard
 import psutil
 import subprocess
 
-# Функции джарвиса
-
-
-def open_discord(backgropn):
-    os.startfile(
-        r'C:\Users\sidze\AppData\Local\Discord\app-1.0.9149\Discord.exe')
-    say('Диск запущен')
-
-
-def open_youtube(backgropn):
-    chrome_path = "C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe"
-    # Открываем приложение в фоновом режиме
-    subprocess.Popen([chrome_path, 'https://www.youtube.com/'],
-                     stdout=[None, subprocess.DEVNULL][backgropn])
-    say('Youtube открыт')
-
-
-def open_tg(backgropn):
-    if not (backgropn):
-        os.startfile(
-            r'C:\Users\sidze\AppData\Roaming\Telegram Desktop\Telegram.exe')
-
-
-def terminate_program(backgropn):
-    say('До свидания')
-    sys.exit()
-
-
-def game_accept(backgropn):
-    keyboard.press_and_release('enter')
-    say('Приятной игры!')
+# Функция проверяет, запущена ли дота
 
 
 def is_dota2_running():
     # Проверяем все запущенные процессы
     for process in psutil.process_iter(['pid', 'name']):
         if process.info['name'] and "dota2" in process.info['name'].lower():
-            return True
-    return False
+            return 1
+    return 0
+
+# Функции ассистента
+
+# TODO: добавь is_dota2_running в функции, создай папку
+# Config(обязательно с большой), в ней создай config.py.
+# перепиши функции через Popen(пример - функция open_youtube)
+# В этот файл внеси массив names и создай словарь paths(пример я тебе отправлю)
+# и пропиши там свои пути
+# добавь config.py в .gitignore
+
+
+def open_discord():
+    subprocess.Popen(paths['discord'])
+    say('Диск запущен')
+
+
+def open_youtube():
+    subprocess.Popen([paths['chrome'], 'https://www.youtube.com/'],
+                     stdout=[None, subprocess.DEVNULL][is_dota2_running()])
+    say('Youtube открыт')
+
+
+def open_tg():
+    if not (backgropn):
+        os.startfile(
+            r'')
+
+
+def terminate_program():
+    say('До свидания')
+    sys.exit()
+
+
+def game_accept():
+    keyboard.press_and_release('enter')
+    say('Приятной игры!')
