@@ -1,16 +1,16 @@
 from Config.config import names
 from sound_functions import listen, say
-import volodya_functions.volodya_functions as vf
+import assistant_functions.assistant_functions as af
 import logging
 
 logger = logging.getLogger(__name__)
 
 # Список команд
-commands = {'открой ютуб': vf.open_youtube,
-            'открой диск': vf.open_discord,
-            'открой телеграмм': vf.open_tg,
-            'стоп': vf.terminate_program,
-            'прими игру': vf.game_accept}
+commands = {'открой ютуб': af.open_youtube,
+            'открой диск': af.open_discord,
+            'открой телеграмм': af.open_tg,
+            'стоп': af.terminate_program,
+            'прими игру': af.game_accept}
 
 logger.info('Ассистент запущен')
 
