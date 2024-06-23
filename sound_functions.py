@@ -3,7 +3,11 @@ import queue
 import json
 import sounddevice as sd
 import pyttsx3
+import logging
 
+
+# Инициализация логгера
+logger = logging.getLogger(__name__)
 
 # Инициализация модели
 vosk_model = vosk.Model('vosk-model-small-ru-0.22')
@@ -40,7 +44,7 @@ def listen() -> str:
                     text = result.get('text', '')
                     return text
     except Exception as e:
-        print("Произошла ошибка:", str(e))
+        logger.error(f'Произошла ошибка: {e}')
 
 
 # Инициализация разговорщика
