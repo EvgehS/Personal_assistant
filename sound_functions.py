@@ -32,7 +32,7 @@ def listen() -> str:
     try:
         # пизданул
         # переработал
-        # пизданул
+        # пизданул ещё
         with sd.RawInputStream(samplerate=samplerate, blocksize=1000,
                                device=device, dtype='int16', channels=1,
                                callback=q_callback):
