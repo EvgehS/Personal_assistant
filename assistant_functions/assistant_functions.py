@@ -1,5 +1,4 @@
 from Config.config import paths
-import os
 from sound_functions import say
 import sys
 import keyboard
@@ -38,9 +37,9 @@ def open_youtube():
 
 
 def open_tg():
-    if not (backgropn):
-        os.startfile(
-            r'')
+    subprocess.Popen([paths['telegram']],
+                     stdout=[None, subprocess.DEVNULL][is_dota2_running()])
+    say('Telegram открыт')
 
 
 def terminate_program():

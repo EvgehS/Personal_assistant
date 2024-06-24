@@ -7,7 +7,7 @@ logger = logging.getLogger(__name__)
 
 # Список команд
 commands = {'открой ютуб': af.open_youtube,
-            'открой диск': af.open_discord,
+            'открой дис': af.open_discord,
             'открой телеграмм': af.open_tg,
             'стоп': af.terminate_program,
             'прими игру': af.game_accept}
