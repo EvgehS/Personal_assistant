@@ -17,17 +17,11 @@ def is_dota2_running():
 
 # Функции ассистента
 
-# TODO: добавь is_dota2_running в функции, создай папку
-# Config(обязательно с большой), в ней создай config.py.
-# перепиши функции через Popen(пример - функция open_youtube)
-# В этот файл внеси массив names и создай словарь paths(пример я тебе отправлю)
-# и пропиши там свои пути
-# добавь config.py в .gitignore
-
 
 def open_discord():
-    subprocess.Popen(paths['discord'])
-    say('Диск запущен')
+    subprocess.Popen([paths['discord']],
+                     stdout=[None, subprocess.DEVNULL][is_dota2_running()])
+    say('Дис запущен')
 
 
 def open_youtube():
