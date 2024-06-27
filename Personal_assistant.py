@@ -1,5 +1,5 @@
 from Config.config import names
-from sound_functions import listen, say
+from Sounds.sound_functions import listen, say
 import assistant_functions.assistant_functions as af
 import logging
 
@@ -23,7 +23,7 @@ while True:
     if any(name in text for name in names):
         for command, function in commands.items():
             if command in text:
-                say('Выполняю')
+                say('Sounds/Выполняю.mp3')
                 try:
                     function()
                 except Exception as e:

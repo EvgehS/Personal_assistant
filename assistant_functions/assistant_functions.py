@@ -1,10 +1,9 @@
 from Config.config import paths
-from sound_functions import say
+from Sounds.sound_functions import say
 import sys
 import keyboard
 import psutil
 import subprocess
-
 # Функция проверяет, запущена ли дота
 
 
@@ -19,28 +18,28 @@ def is_dota2_running():
 
 
 def open_discord():
-    subprocess.Popen([paths['discord']],
+    subprocess.Popen(['cmd', '/c', 'start', paths['discord']],
                      stdout=[None, subprocess.DEVNULL][is_dota2_running()])
-    say('Дис запущен')
+    say('Sounds/Диск_запущен.mp3')
 
 
 def open_youtube():
     subprocess.Popen([paths['chrome'], 'https://www.youtube.com/'],
                      stdout=[None, subprocess.DEVNULL][is_dota2_running()])
-    say('Youtube открыт')
+    say('Sounds/Youtube_открыт.mp3')
 
 
 def open_tg():
     subprocess.Popen([paths['telegram']],
                      stdout=[None, subprocess.DEVNULL][is_dota2_running()])
-    say('Telegram открыт')
+    say('Sounds/Telegram_открыт.mp3')
 
 
 def terminate_program():
-    say('До свидания')
+    say('Sounds/До_свидания.mp3')
     sys.exit()
 
 
 def game_accept():
     keyboard.press_and_release('enter')
-    say('Приятной игры!')
+    say('Sounds/Приятной_игры.mp3')
