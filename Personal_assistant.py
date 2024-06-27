@@ -23,7 +23,8 @@ while True:
     if any(name in text for name in names):
         for command, function in commands.items():
             if command in text:
-                say('Выполняю')
+                say('C:\\Users\\1\\OneDrive\\Рабочий стол\\sounds'
+                    '\\Выполняю.mp3')
                 try:
                     function()
                 except Exception as e:

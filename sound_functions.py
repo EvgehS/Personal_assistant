@@ -2,9 +2,8 @@ import vosk
 import queue
 import json
 import sounddevice as sd
-import pyttsx3
 import logging
-
+import pygame
 
 # Инициализация логгера
 logger = logging.getLogger(__name__)
@@ -46,16 +45,20 @@ def listen() -> str:
     except Exception as e:
         logger.error(f'Произошла ошибка: {e}')
 
-
-# Инициализация разговорщика
-engine = pyttsx3.init()
-# Установка настроек
-engine.setProperty('voice', 'ru')
-engine.setProperty('rate', 200)
-
 # Функция озвучивания слов
 
 
-def say(words):
-    engine.say(words)
-    engine.runAndWait()
+def say(link):
+    pygame.init()
+    # Загрузка звукового файла
+    sound = pygame.mixer.Sound(link)
+
+    # Воспроизведение звукового файла
+    sound.play()
+
+    # Ждем, пока звук не закончится
+    while pygame.mixer.get_busy():
+        pygame.time.Clock().tick(10)
+
+    # Завершение работы pygame
+    pygame.quit()
