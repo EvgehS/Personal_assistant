@@ -1,10 +1,10 @@
 from Config.config import paths
-from sound_functions import say
+from Sounds.sound_functions import say
 import sys
 import keyboard
 import psutil
 import subprocess
-
+import time
 # Функция проверяет, запущена ли дота
 
 
@@ -19,33 +19,39 @@ def is_dota2_running():
 
 
 def open_discord():
-    subprocess.Popen([paths['discord']],
+    subprocess.Popen(['cmd', '/c', 'start', paths['discord']],
                      stdout=[None, subprocess.DEVNULL][is_dota2_running()])
-    link = 'C:\\Users\\1\\OneDrive\\Рабочий стол\\sounds\\Дис_запущен.mp3'
-    say(link)
+    say('Sounds/Диск_запущен.mp3')
 
 
 def open_youtube():
     subprocess.Popen([paths['chrome'], 'https://www.youtube.com/'],
                      stdout=[None, subprocess.DEVNULL][is_dota2_running()])
-    link = 'C:\\Users\\1\\OneDrive\\Рабочий стол\\sounds\\Ютуб_открыт.mp3'
-    say(link)
+    say('Sounds/Youtube_открыт.mp3')
 
 
 def open_tg():
     subprocess.Popen([paths['telegram']],
                      stdout=[None, subprocess.DEVNULL][is_dota2_running()])
-    link = 'C:\\Users\\1\\OneDrive\\Рабочий стол\\sounds\\Телеграм_открыт.mp3'
-    say(link)
+    say('Sounds/Telegram_открыт.mp3')
+
+
+def open_vk():
+    subprocess.Popen([paths['chrome'], paths['vkmusic']],
+                     stdout=[None, subprocess.DEVNULL][is_dota2_running()])
+    time.sleep(3)
+    keyboard.press('alt')
+    keyboard.press('k')
+    keyboard.release('alt')
+    keyboard.release('k')
+    say('Sounds/Наслаждайтесь.mp3')
 
 
 def terminate_program():
-    link = 'C:\\Users\\1\\OneDrive\\Рабочий стол\\sounds\\До_свидания.mp3'
-    say(link)
+    say('Sounds/До_свидания.mp3')
     sys.exit()
 
 
 def game_accept():
     keyboard.press_and_release('enter')
-    link = 'C:\\Users\\1\\OneDrive\\Рабочий стол\\sounds\\Приятной_игры.mp3'
-    say(link)
+    say('Sounds/Приятной_игры.mp3')

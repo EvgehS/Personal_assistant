@@ -2,8 +2,9 @@ import vosk
 import queue
 import json
 import sounddevice as sd
-import logging
 import pygame
+import logging
+
 
 # Инициализация логгера
 logger = logging.getLogger(__name__)
@@ -45,20 +46,17 @@ def listen() -> str:
     except Exception as e:
         logger.error(f'Произошла ошибка: {e}')
 
-# Функция озвучивания слов
+
+# Инициализация воспроизводителя звуков
+pygame.mixer.init()
 
 
-def say(link):
-    pygame.init()
-    # Загрузка звукового файла
-    sound = pygame.mixer.Sound(link)
+# Функция запуска mp3 файлов
 
-    # Воспроизведение звукового файла
-    sound.play()
 
-    # Ждем, пока звук не закончится
-    while pygame.mixer.get_busy():
+def say(file):
+    pygame.mixer.music.load(file)
+    pygame.mixer.music.play()
+
+    while pygame.mixer.music.get_busy():
         pygame.time.Clock().tick(10)
-
-    # Завершение работы pygame
-    pygame.quit()
