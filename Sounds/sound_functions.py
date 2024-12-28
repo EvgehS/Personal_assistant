@@ -13,8 +13,8 @@ logger = logging.getLogger(__name__)
 vosk_model = vosk.Model('vosk-model-small-ru-0.22')
 
 # Параметры записи
-samplerate = 16000
-device = 1  # Номер устройства ввода
+samplerate = 48000
+device = 5  # Номер устройства ввода
 
 # Очередь для передачи данных
 q = queue.Queue()
@@ -25,14 +25,13 @@ q = queue.Queue()
 def q_callback(indata, frames, time, status):
     q.put(bytes(indata))
 
+
 # Функция для прослушивания и распознавания речи
 
 
 def listen() -> str:
     try:
-        # пизданул
-        # переработал
-        # пизданул ещё
+
         with sd.RawInputStream(samplerate=samplerate, blocksize=1000,
                                device=device, dtype='int16', channels=1,
                                callback=q_callback):
@@ -42,7 +41,8 @@ def listen() -> str:
                 if rec.AcceptWaveform(data):
                     result = json.loads(rec.Result())
                     text = result.get('text', '')
-                    return text
+                    if text:
+                        return text
     except Exception as e:
         logger.error(f'Произошла ошибка: {e}')
 
