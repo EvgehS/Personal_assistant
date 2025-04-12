@@ -19,3 +19,5 @@ int main()
     Py_Finalize();
     return 0;
 }
+
+// compile with: g++ Jarvis.cpp -o Jarvis -I/usr/include/python3.13 -L/usr/lib -lboost_python3 -lpython3.13

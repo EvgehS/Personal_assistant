@@ -14,7 +14,7 @@ vosk_model = vosk.Model('vosk-model-small-ru-0.22')
 
 # Параметры записи
 samplerate = 48000
-device = 5  # Номер устройства ввода
+device = 3  # Номер устройства ввода
 
 # Очередь для передачи данных
 q = queue.Queue()
