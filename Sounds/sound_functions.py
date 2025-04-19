@@ -2,7 +2,6 @@ import vosk
 import queue
 import json
 import sounddevice as sd
-import pygame
 import logging
 
 
@@ -45,18 +44,4 @@ def listen() -> str:
                         return text
     except Exception as e:
         logger.error(f'Произошла ошибка: {e}')
-
-
-# Инициализация воспроизводителя звуков
-pygame.mixer.init()
-
-
-# Функция запуска mp3 файлов
-
-
-def say(file):
-    pygame.mixer.music.load(file)
-    pygame.mixer.music.play()
-
-    while pygame.mixer.music.get_busy():
-        pygame.time.Clock().tick(10)
+        return None
