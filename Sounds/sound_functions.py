@@ -2,30 +2,21 @@ import vosk
 import queue
 import json
 import sounddevice as sd
-import logging
 
-
-# Инициализация логгера
-logger = logging.getLogger(__name__)
-
-# Инициализация модели
+# Загрузка модели Vosk
 vosk_model = vosk.Model('vosk-model-small-ru-0.22')
 
 # Параметры записи
 samplerate = 48000
-device = 3  # Номер устройства ввода
+device = 2  # TODO: через config.txt
 
-# Очередь для передачи данных
 q = queue.Queue()
-
-# Функция обратного вызова для записи данных
 
 
 def q_callback(indata, frames, time, status):
     q.put(bytes(indata))
 
-
-# Функция для прослушивания и распознавания речи
+# Функция распознавания речи
 
 
 def listen() -> str:
@@ -43,5 +34,5 @@ def listen() -> str:
                     if text:
                         return text
     except Exception as e:
-        logger.error(f'Произошла ошибка: {e}')
+        print(f'Произошла ошибка: {e}')
         return None

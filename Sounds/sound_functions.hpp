@@ -8,7 +8,7 @@ std::string listen() {
         if (!initialized) {
             Py_Initialize();
             boost::python::object sys = boost::python::import("sys");
-            sys.attr("path").attr("insert")(0, "/home/evgen/programs/Personal_assistant/venv/lib/python3.10/site-packages");
+            sys.attr("path").attr("insert")(0, "/home/evgen/programs/Personal_assistant/venv/lib/python3.13/site-packages"); // TODO: вариативная версия python
             sys.attr("path").attr("insert")(0, "/home/evgen/programs/Personal_assistant");
 
             initialized = true;
@@ -24,4 +24,3 @@ std::string listen() {
         return "error";
     }
 }
-
