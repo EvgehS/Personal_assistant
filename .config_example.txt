@@ -1,0 +1,5 @@
+sound_device = 2
+compile_libs = -I/home/evgen/programs/Personal_assistant/venv/include/python3.13 -L/home/evgen/programs/Personal_assistant/venv/lib/python3.13/site-packages -Wl,-rpath,/home/evgen/programs/Personal_assistant/venv/lib/python3.13/site-packages -lboost_python3 -lpython3.13
+name = Джарвис
+default_model = 
+code_model = 

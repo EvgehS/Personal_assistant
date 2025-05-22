@@ -1,0 +1,8 @@
+.git
+.vscode
+__pycache__
+Jarvis
+.config.txt
+speak.wav
+Functions/Sounds/sound_functions.o
+Functions/Assistant.o
