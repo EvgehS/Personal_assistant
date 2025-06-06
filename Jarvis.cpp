@@ -3,7 +3,7 @@
 
 int main() {
     Assistant assistant;
-    assistant.speak("Привет, меня зовут " + assistant.get_name() + "! Чем могу быть полезен?");
 
+    assistant.start();
     return 0;
 }

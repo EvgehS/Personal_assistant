@@ -1,9 +1,18 @@
 #include <boost/python.hpp>
+#include <iostream>
 #include "../../Assistant.h"
 #include <string>
 
 std::string Assistant::listen()
 {
+    if(mode == "текст")
+    {
+        std::string command;
+        std::cout << "Введите команду: ";
+        std::getline(std::cin, command);
+        return command;
+    }
+
     try
     {
         // Инициализация Python
@@ -39,14 +48,16 @@ std::string Assistant::listen()
     }
 }
 
-void Assistant::speak(std::string&& text)
+void Assistant::speak(const std::string& text)
 {
+    last_phrase = text;
+
     if (mode == "текст")
         std::cout << text << std::endl;
     else
     {
         std::string command = "echo " + text + " | RHVoice-test -p vsevolod -t 95 -r 110 -o ./speak.wav";
         system(command.c_str());
-        system("ffplay -autoexit -nodisp -loglevel quiet ./speak.wav");
+        system("ffplay -autoexit -nodisp -loglevel quiet ./speak.wav > /dev/null 2>&1");
     }
 }
