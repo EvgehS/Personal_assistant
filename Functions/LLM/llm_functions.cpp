@@ -9,7 +9,7 @@ using json = nlohmann::json;
 
 bool Assistant::is_lm_studio_running()
 {
-    FILE *fp = popen("pgrep -f lm-studio", "r");
+    FILE *fp = popen("pgrep -f lmstudio", "r");
 
     char buffer[128];
     if (fgets(buffer, sizeof(buffer), fp) != nullptr)
@@ -26,10 +26,10 @@ void Assistant::start_lm_studio()
 {
     if (!is_lm_studio_running())
     {
-        system("nohup lm-studio > /dev/null 2>&1 &");
+        system("nohup lmstudio > /dev/null 2>&1 &");
         speak("Запускаю LM-Studio");
-        std::this_thread::sleep_for(std::chrono::seconds(3));
-        system("bspc query -N -n focused | xargs -I {} bspc node {} --to-desktop '^9'");
+        std::this_thread::sleep_for(std::chrono::seconds(5));
+        system("hyprctl dispatch movetoworkspacesilent 9");
     }
 }
 
@@ -75,12 +75,14 @@ void Assistant::start_server_and_load_model(const std::string &model_name)
     {
         speak("Запускаю сервер");
         system("lms server start");
+        std::this_thread::sleep_for(std::chrono::seconds(1));
     }
 
     if (!is_model_loaded(model_name))
     {
         speak("Загружаю модель " + model_name);
         std::string command = "lms load " + model_name;
+        std::cout << command << std::endl;
         system(command.c_str());
         speak("Модель " + model_name + " загружена");
     }
@@ -152,7 +154,7 @@ std::string Assistant::get_answer(const std::string &question, const std::string
     {
         command += ",{\"role\": \"" + item.first + "\", \"content\": \"" + item.second + "\"}";
     }
-    command += ", {\"role\":\"user\", \"content\":\"" + question + ".Ответь кратко\"}]}\'";
+    command += ", {\"role\":\"user\", \"content\":\"" + question + ".Ответь кратко и только на русском\"}]}\'";
     std::string result = "";
     char buffer[4096];
     FILE *fp = popen(command.c_str(), "r");

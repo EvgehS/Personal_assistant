@@ -7,3 +7,4 @@ speak.wav
 Functions/Sounds/sound_functions.o
 Functions/Assistant.o
 Functions/LLM/llm_functions.o
+Functions/Apps/apps.o

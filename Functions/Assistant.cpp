@@ -21,8 +21,10 @@ std::string Assistant::read_from_config(const std::string &variable)
     else
     {
         std::cerr << "Не удалось открыть файл конфигурации." << std::endl;
+        config_file.close();
         return "";
     }
+    config_file.close();
     return "";
 }
 
@@ -68,6 +70,8 @@ void Assistant::do_command(std::string &command)
             {
                 command_found = true;
                 command_pair.second();
+                if((command.find("сделай ещё раз") == std::string::npos) && (command.find("выполни ещё раз") == std::string::npos))
+                    last_command = command;
                 break;
             }
         }
@@ -137,4 +141,13 @@ std::string Assistant::battery_level()
     std::getline(battery_file, battery_level);
     battery_file.close();
     return "Уровень заряда батареи: " + battery_level + "%";
+}
+
+std::string Assistant::get_time()
+{
+    time_t now = time(0);
+    tm *ltm = localtime(&now);
+    char buffer[80];
+    strftime(buffer, sizeof(buffer), "%H часов %M минут %S секунд", ltm);
+    return std::string(buffer);
 }
